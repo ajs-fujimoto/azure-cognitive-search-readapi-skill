@@ -1,0 +1,1 @@
+# azure-cognitive-search-readapi-skill
