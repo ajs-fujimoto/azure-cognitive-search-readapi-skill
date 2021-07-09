@@ -29,13 +29,12 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
         client = ComputerVisionClient(computerVisionEndpoint, credentials)
 
         for record in body["values"]:
-            logging.info("実行1")
             recordId = record["recordId"]
                 
             # Get the base64 encoded image
             encoded_image = record["data"]["image"]["data"]
             image = base64.b64decode(str(encoded_image).strip())
-            logging.info("実行2")
+
             # calls the read api of the specified image. 
             result = readapi.read_text(client, io.BytesIO(image))
             temp_line_text = []
@@ -57,8 +56,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
     except Exception as error:
         logging.exception('Python Error')
         records['values'].append(makeErrRes(recordId, '500', f'{type(error).__name__}: {str(error)}', 'Python Error'))
-        
-    logging.info("実行3")
+
     return func.HttpResponse(body=json.dumps(records), headers={ 'Content-Type': 'application/json', "Access-Control-Allow-Origin": "*" })
 
 
