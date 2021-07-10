@@ -33,7 +33,8 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
                 
             # Get the base64 encoded image
             encoded_image = record["data"]["image"]["data"]
-            image = base64.b64decode(str(encoded_image).strip())
+            base64Bytes = encoded_image.encode('utf-8')
+            image = base64.b64decode(base64Bytes)
 
             # calls the read api of the specified image. 
             result = readapi.read_text(client, io.BytesIO(image))
