@@ -81,7 +81,7 @@ Azure Functions で実行する場合、これは「アプリケーションの�
 ```json
 {
     "@odata.type": "#Microsoft.Skills.Custom.WebApiSkill",
-    "name": "readapi3.2",
+    "name": "ReadApiSkill",
     "description": "Reads characters from a document using the Read API 3.2.",
     "uri": "[AzureFunctionEndpointUrl]/api/AnalyzeForm?code=[AzureFunctionDefaultHostKey]",
     "context": "/document/normalized_images/*",
